@@ -1,4 +1,4 @@
-# hidori/node-chrome-ja
+# pointdev-jp/node-chrome-ja
 
 This container image contains the following components:
 
@@ -9,14 +9,15 @@ This container image contains the following components:
 ## USAGE
 
 ```bash
-docker pull hidori/node-chrome-ja
+docker pull pointdev-jp/node-chrome-ja
 ```
 
 ## EXAMPLE
 
 ```bash
 docker run -it --rm --privileged \
+	-u `id -u`:`id -g` \
     -v $PWD/tmp:/workdir \
-    hidori/node-chrome-ja \
-    google-chrome --no-sandbox --headless --disable-gpu --screenshot="/workdir/screenshot.png" --window-size=1024,768 https://www.google.co.jp/
+    pointdev-jp/node-chrome-ja \
+	google-chrome --no-sandbox --headless --screenshot=/workdir/screenshot.png --window-size=1024,768 https://www.google.co.jp
 ```

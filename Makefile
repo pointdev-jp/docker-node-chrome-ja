@@ -1,4 +1,4 @@
-IMAGE_NAME := hidori/node-chrome-ja
+IMAGE_NAME := pointdev-jp/node-chrome-ja
 
 .PHONY: build
 build:
@@ -19,13 +19,7 @@ pull: rmi
 .PHONY: run
 run:
 	docker run -it --rm --privileged \
+		-u `id -u`:`id -g` \
 		-v $$PWD/tmp:/workdir \
 		$(IMAGE_NAME) \
-		google-chrome --no-sandbox --headless --disable-gpu --screenshot="/workdir/screenshot.png" --window-size=1024,768 https://www.google.co.jp/
-
-.PHONY: run
-run:
-	docker run -it --rm --privileged \
-		-v $$PWD/tmp:/workdir \
-		$(IMAGE_NAME) \
-		google-chrome --no-sandbox --headless --disable-gpu --screenshot="/workdir/screenshot.png" --window-size=1024,768 https://www.google.co.jp/
+		google-chrome --no-sandbox --headless --screenshot=/workdir/screenshot.png --window-size=1024,768 https://www.google.co.jp
